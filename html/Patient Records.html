@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+<link href="C:\Users\CLO\Desktop\Monster-Pizza-master\html\index.css" rel="stylesheet" type="text/css">
+<script src="javascript.js"></script>
+<script>
+   function getData(){
+     //document.getElementById("display").innerHTML = "Success";
+     var displayResources = $("#display");
+
+        $.ajax({
+		
+     type: "GET",
+     url: "http://127.0.0.1:9001/patients/2/records", // Using myjson.com to store the JSON
+     success: function(result) {
+       console.log(result);
+       var output =
+         "<table><thead><tr><th>HEARTBEAT</th><th>BLOODPRESSURE</th><th>URINETEST</th><th>ALERGIES</th><th>PATIENT_ID</th></thead><tbody>";
+       for (var i in result) {
+         output +=
+           "<tr><td>" +
+           result[i].heartbeat +
+           "</td><td>" +
+           result[i].bloodpressure +
+           "</td><td>" +
+           result[i].urinetest +
+           "</td><td>" +
+           result[i].alergies +
+           "</td><td>" +
+           result[i]._id +
+           "</td></tr>";
+       }
+	   
+	   
+       output += "</tbody></table>";
+		
+       displayResources.html(output);
+       $("table").addClass("table");
+     }
+   });
+}
+
+ </script>
+<style>
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>WeCare</h1>
+  <h3>www.wecare.com</h3>
+</div> 
+
+<div class="row">
+  <div class="column">
+
+      <div class="navigation">
+    <a href="1.html">MAIN MENU</a>
+    <a href="Patient List.html">PATIENT LIST</a>
+    <a href="Patient Records.html">PATIENT RECORDS</a>
+    <a href="1.html">CUSTOMER SERVICE</a>
+	<a href="1.html">CHANGE LANGUAGE</a>
+	<a href="1.html">INSTRUCTIONS</a>
+	<a href="1.html">ABOUT US</a>
+	<a href="1.html">CONTACT US</a>
+ 	  
+  </div>
+  
+  </div>
+  
+  
+  <div class="column">
+
+
+
+
+  <div class="middle" style="overflow:auto">
+  
+  
+ 
+	<h5> Welcome Doctor Can Lo </h5>
+	
+	<button id="getData" type="button" onClick="getData()" class="btn btn-primary">Get Patient Records</button>
+                           <div id="display">
+                         </div>
+	
+
+ 
+ </div>
+
+  
+  </div>
+  
+  <div class="column">
+  
+	<div class="side">
+    <h5>INSTRUCTIONS</h5>
+    <h6>How to use the website</h6>
+	<p>1)Use Main menu to login first, Doctors can not access patient list or patient records without logging in. </p>
+	<p>2)Use the Get Patient List button in the Patient List page to get the Patient List </p>
+	<p>3)Use the Get Patient Records button in the Patient Records page to get the Patient Records </p>
+	<p> If you have any questions, you can always use Customer Service Page </p>
+	
+	</div>
+  </div>
+</div>
+
+<div class="copyright" style="overflow:auto">
+<p>Copyright© CAN LO - VENKATESH. TORONTO, ON </p>
+
+</div>
+
+</body>
+</html>
